@@ -240,29 +240,6 @@
             color: var(--dark-text);
             min-height: 54px;
         }
-        /* Portfolio Section */
-        .portfolio {
-            padding: 80px 0 60px;
-            background: var(--white);
-        }
-        .portfolio-slider {
-            max-width: 970px;
-            margin: auto;
-        }
-        .swiper {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(139,90,43,0.08);
-        }
-        .swiper-slide img {
-            width: 100%;
-            height: 370px;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-        .swiper-pagination-bullet-active {
-            background: var(--primary-color) !important;
-        }
         /* Booking Section */
         .booking {
             padding: 80px 0;
@@ -616,6 +593,15 @@
                 padding-right: 0;
             }
         }
+        /* Graduation image in booking */
+        .graduation-image {
+            display: block;
+            margin: 0 auto 30px auto;
+            max-width: 350px;
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 4px 22px rgba(139,90,43,0.11);
+        }
     </style>
 </head>
 <body>
@@ -634,7 +620,7 @@
                 <ul>
                     <li class="active"><a href="#home">الرئيسية</a></li>
                     <li><a href="#services">خدماتنا</a></li>
-                    <li><a href="#portfolio">معرض الأعمال</a></li>
+                    <!-- <li><a href="#portfolio">معرض الأعمال</a></li> -->
                     <li><a href="#booking">الحجز</a></li>
                     <li><a href="#faq">الأسئلة الشائعة</a></li>
                     <li><a href="#contact">تواصل معنا</a></li>
@@ -652,119 +638,18 @@
             </div>
         </div>
     </section>
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>خدماتنا</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="تصوير الأعراس">
-                    </div>
-                    <div class="service-content">
-                        <h3><i class="fas fa-ring"></i> تصوير الأعراس</h3>
-                        <p>توثيق لحظات فرحتك بأرقى الأساليب الفنية وأحدث التقنيات لضمان أجمل الذكريات.</p>
-                        <a href="#booking" class="btn">احجز الآن</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=800&q=80" alt="تصوير الحناء">
-                    </div>
-                    <div class="service-content">
-                        <h3><i class="fas fa-leaf"></i> تصوير الحناء</h3>
-                        <p>توثيق أجمل لحظات حناء العروس بتصوير إبداعي مميز ولمسات جمالية.</p>
-                        <a href="#booking" class="btn">احجز الآن</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="تصوير التخرج">
-                    </div>
-                    <div class="service-content">
-                        <h3><i class="fas fa-graduation-cap"></i> تصوير التخرج</h3>
-                        <p>احتفظ بذكرى تخرجك بأجمل الصور الاحترافية التي تعكس نجاحك وفرحتك.</p>
-                        <a href="#booking" class="btn">احجز الآن</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>معرض الأعمال</h2>
-            </div>
-            <div class="portfolio-slider">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=900&q=80" alt="Wedding Shoot">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80" alt="Henna Night">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Graduation">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1429087969512-1e85aab2683d?auto=format&fit=crop&w=900&q=80" alt="Outdoor Event">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80" alt="Family Event">
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>آراء العملاء</h2>
-            </div>
-            <div class="testimonials-slider">
-                <div class="swiper testiSwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <p>أفضل مصور تعاملت معه، الصور كانت رائعة والتسليم سريع. شكراً إياد!</p>
-                                <div class="client">سارة من جدة</div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <p>احترافية عالية وتفاصيل دقيقة بكل صورة. أنصح به دائماً!</p>
-                                <div class="client">محمد من مكة</div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <p>وثق لنا أجمل حفل تخرج. صور إبداعية وتعاون رائع.</p>
-                                <div class="client">ريم من الرياض</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Booking Section -->
     <section class="booking" id="booking">
         <div class="container">
             <div class="section-title">
-                <h2>حجز موعد</h2>
+                <h2>احجز موعدك الآن</h2>
             </div>
+            <!-- Graduation decorative image -->
+            <img class="graduation-image" src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=600&q=80" alt="تصوير تخرج">
             <div class="booking-form">
                 <form id="bookingForm" autocomplete="off">
                     <div class="form-group">
-                        <label for="name">الاسم الكامل</label>
+                        <label for="name">الاسم</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
@@ -831,10 +716,7 @@
                 <div class="faq-question">كيف يمكنني حجز موعد تصوير؟</div>
                 <div class="faq-answer">يمكنك الحجز مباشرة عبر نموذج الحجز في الموقع أو التواصل عبر واتساب.</div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">هل يمكن التصوير خارج جدة؟</div>
-                <div class="faq-answer">نعم، يغطي المصور عدة مدن في المملكة حسب التنسيق المسبق.</div>
-            </div>
+            <!-- حذف سؤال التصوير خارج جدة -->
             <div class="faq-item">
                 <div class="faq-question">متى أستلم الصور بعد التصوير؟</div>
                 <div class="faq-answer">يتم تسليم الصور خلال 3-7 أيام عمل حسب نوع المناسبة.</div>
@@ -911,7 +793,7 @@
                     <ul>
                         <li><a href="#home">الرئيسية</a></li>
                         <li><a href="#services">خدماتنا</a></li>
-                        <li><a href="#portfolio">معرض الأعمال</a></li>
+                        <!-- <li><a href="#portfolio">معرض الأعمال</a></li> -->
                         <li><a href="#booking">الحجز</a></li>
                         <li><a href="#contact">تواصل معنا</a></li>
                     </ul>
@@ -969,19 +851,6 @@
                     this.parentElement.classList.add('active');
                 }
             });
-        });
-        // Swiper Portfolio
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            pagination: { el: ".swiper-pagination", clickable: true },
-            autoplay: { delay: 2600, disableOnInteraction: false },
-            effect: 'fade'
-        });
-        // Swiper Testimonials
-        var testiSwiper = new Swiper(".testiSwiper", {
-            loop: true,
-            pagination: { el: ".swiper-pagination", clickable: true },
-            autoplay: { delay: 3900, disableOnInteraction: false }
         });
         // Toast Notification
         function showToast(msg) {
@@ -1071,4 +940,4 @@
         });
     </script>
 </body>
-</html>
+                                                                  </html>
