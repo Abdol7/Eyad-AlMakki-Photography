@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyad AlMakki Photography - مصور احترافي للأعراس والمناسبات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B5A2B;
+            --light-brown: #D2B48C;
+            --cream: #F5F5DC;
+            --white: #FFFFFF;
+            --dark-text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--light-brown);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--light-brown);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--light-brown);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .service-content p {
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        /* Booking Section */
+        .booking {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+        
+        .booking-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--light-brown);
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--light-brown);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Eyad<span>AlMakki</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#portfolio">معرض الأعمال</a></li>
+                    <li><a href="#testimonials">آراء العملاء</a></li>
+                    <li><a href="#booking">الحجز</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>لحظاتك الثمينة تستحق أفضل تصوير</h1>
+                <p>مصور احترافي متخصص في تصوير الأعراس، الحفلات، التخرج وجميع المناسبات</p>
+                <a href="#booking" class="btn">احجز موعدك الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="wedding-photo.jpg" alt="تصوير أعراس">
+                    </div>
+                    <div class="service-content">
+                        <h3>تصوير الأعراس</h3>
+                        <p>توثيق كافة لحظات فرحتك باحترافية عالية وجودة فائقة</p>
+                        <a href="#booking" class="btn">احجز الآن</a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="henna-photo.jpg" alt="تصوير حناء">
+                    </div>
+                    <div class="service-content">
+                        <h3>تصوير الحناء</h3>
+                        <p>توثيق أجمل لحظات حناء العروس بتصوير إبداعي مميز</p>
+                        <a href="#booking" class="btn">احجز الآن</a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="graduation-photo.jpg" alt="تصوير تخرج">
+                    </div>
+                    <div class="service-content">
+                        <h3>تصوير التخرج</h3>
+                        <p>احتفظ بذكرى تخرجك بأجمل الصور الاحترافية</p>
+                        <a href="#booking" class="btn">احجز الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء عملائنا</h2>
+            </div>
+            <!-- Testimonials will be added here -->
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>حجز موعد</h2>
+            </div>
+            <div class="booking-form">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الجوال</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">المدينة</label>
+                        <select id="city" name="city" required>
+                            <option value="">اختر المدينة</option>
+                            <option value="الرياض">الرياض</option>
+                            <option value="جدة">جدة</option>
+                            <option value="مكة">مكة</option>
+                            <option value="المدينة">المدينة</option>
+                            <option value="الدمام">الدمام</option>
+                            <option value="الخبر">الخبر</option>
+                            <option value="الطائف">الطائف</option>
+                            <option value="تبوك">تبوك</option>
+                            <option value="أبها">أبها</option>
+                            <option value="نجران">نجران</option>
+                            <option value="جازان">جازان</option>
+                            <option value="حائل">حائل</option>
+                            <option value="بريدة">بريدة</option>
+                            <option value="سكاكا">سكاكا</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">التاريخ</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event">نوع المناسبة</label>
+                        <select id="event" name="event" required>
+                            <option value="">اختر المناسبة</option>
+                            <option value="عرس">عرس</option>
+                            <option value="حناء">حناء</option>
+                            <option value="تخرج">تخرج</option>
+                            <option value="مناسبة عائلية">مناسبة عائلية</option>
+                            <option value="تصوير شخصي">تصوير شخصي</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="details">تفاصيل إضافية (اختياري)</label>
+                        <textarea id="details" name="details"></textarea>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" id="saveInfo" name="saveInfo">
+                        <label for="saveInfo">حفظ معلوماتي للمرة القادمة</label>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn">إرسال الحجز</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>تواصل معنا</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>وسائل التواصل</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/eyadalmakki_photography" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@eyadalmakki?_t=zm-8uuf5p901qw&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.snapchat.com/add/eyadalmakki24?share_id=zcAIkL8hdU4&locale=ar-AE" target="_blank"><i class="fab fa-snapchat"></i></a>
+                        <a href="https://www.facebook.com/share/1H1cWFP3w6/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    </div>
+                    <p>واتساب: <a href="https://wa.me/966500850980" target="_blank">+966 50 085 0980</a></p>
+                </div>
+                <div class="complaint-form">
+                    <h3>الشكاوى والاقتراحات</h3>
+                    <form id="complaintForm">
+                        <div class="form-group">
+                            <label for="complaintName">الاسم</label>
+                            <input type="text" id="complaintName" name="complaintName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complaintPhone">رقم الجوال</label>
+                            <input type="tel" id="complaintPhone" name="complaintPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complaintMessage">رسالتك</label>
+                            <textarea id="complaintMessage" name="complaintMessage" required></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn">إرسال الشكوى</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>عن المصور</h3>
+                    <p>إياد المكي، مصور محترف متخصص في تصوير المناسبات والأعراس باحترافية وجودة عالية.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#portfolio">معرض الأعمال</a></li>
+                        <li><a href="#booking">الحجز</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <p>واتساب: +966 50 085 0980</p>
+                    <p>البريد الإلكتروني: info@eyadalmakki.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Eyad AlMakki Photography. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // Booking Form Submission
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const date = document.getElementById('date').value;
+            const event = document.getElementById('event').value;
+            const details = document.getElementById('details').value;
+            const saveInfo = document.getElementById('saveInfo').checked;
+            
+            // Format date for display
+            const formattedDate = new Date(date).toLocaleDateString('ar-SA');
+            
+            // Create WhatsApp message
+            const message = `السلام عليكم... داير استفسر عن حجز في يوم (${formattedDate}) المناسبه (${event}) و المدينه(${city})`;
+            
+            // Encode message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/966500850980?text=${encodedMessage}`, '_blank');
+            
+            // Save user info if requested
+            if (saveInfo) {
+                localStorage.setItem('userInfo', JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    city: city
+                }));
+            }
+            
+            // Reset form
+            bookingForm.reset();
+            
+            // Show success message
+            alert('تم إرسال طلب الحجز بنجاح، سيتم التواصل معك عبر واتساب لتأكيد الحجز.');
+        });
+        
+        // Complaint Form Submission
+        const complaintForm = document.getElementById('complaintForm');
+        complaintForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('complaintName').value;
+            const phone = document.getElementById('complaintPhone').value;
+            const message = document.getElementById('complaintMessage').value;
+            
+            // Create WhatsApp message for complaint
+            const complaintMessage = `شكوى/اقتراح من ${name} (${phone}): ${message}`;
+            
+            // Encode message for WhatsApp URL
+            const encodedComplaint = encodeURIComponent(complaintMessage);
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/966500850980?text=${encodedComplaint}`, '_blank');
+            
+            // Reset form
+            complaintForm.reset();
+            
+            // Show success message
+            alert('تم إرسال شكواك بنجاح، سيتم التواصل معك عبر واتساب إذا لزم الأمر.');
+        });
+        
+        // Load saved user info if available
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedInfo = localStorage.getItem('userInfo');
+            if (savedInfo) {
+                const userInfo = JSON.parse(savedInfo);
+                document.getElementById('name').value = userInfo.name || '';
+                document.getElementById('phone').value = userInfo.phone || '';
+                document.getElementById('city').value = userInfo.city || '';
+                
+                // Auto-check the save info checkbox
+                document.getElementById('saveInfo').checked = true;
+            }
+        });
+    </script>
+</body>
+</html>
