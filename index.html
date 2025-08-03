@@ -4,97 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eyad AlMakki Photography - مصور احترافي للأعراس والمناسبات</title>
+    <meta name="description" content="إياد المكي، مصور محترف متخصص في تصوير الأعراس والمناسبات بخبرة وجودة عالية. احجز موعدك الآن لتوثيق أجمل لحظاتك.">
+    <meta name="keywords" content="تصوير, أعراس, مناسبات, مصور, إياد المكي, تصوير حفلات, تصوير تخرج, تصوير حناء, Wedding Photographer, Saudi Arabia">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272512.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css"/>
     <style>
         :root {
             --primary-color: #8B5A2B;
             --light-brown: #D2B48C;
             --cream: #F5F5DC;
             --white: #FFFFFF;
-            --dark-text: #333333;
+            --dark-text: #222;
+            --transition: 0.3s cubic-bezier(.47,1.64,.41,.8);
         }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
         }
-        
         body {
             background-color: var(--white);
             color: var(--dark-text);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 18px;
         }
-        
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
         /* Header Styles */
         header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: background var(--transition);
+            backdrop-filter: blur(4px);
         }
-        
+        header.scrolled {
+            background: rgba(139, 90, 43, 0.97);
+        }
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
         }
-        
         .logo {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: var(--primary-color);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
         }
-        
+        .logo img {
+            height: 36px;
+            width: 36px;
+        }
         .logo span {
             color: var(--light-brown);
+            font-weight: 900;
         }
-        
         nav ul {
             display: flex;
             list-style: none;
         }
-        
         nav ul li {
             margin-left: 20px;
         }
-        
         nav ul li a {
             text-decoration: none;
             color: var(--dark-text);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color var(--transition);
         }
-        
-        nav ul li a:hover {
+        nav ul li a:hover,
+        nav ul li.active a {
             color: var(--primary-color);
         }
-        
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--primary-color);
             cursor: pointer;
         }
-        
+        .lang-switch {
+            margin-right: 20px;
+            background: var(--cream);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 20px;
+            padding: 5px 17px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background var(--transition);
+        }
+        .lang-switch:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background: linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.40)),
+            url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -103,52 +127,58 @@
             text-align: center;
             color: var(--white);
             margin-top: 70px;
+            position: relative;
         }
-        
+        .hero-content {
+            max-width: 650px;
+            margin: auto;
+            animation: fadeInUp 1.2s;
+        }
         .hero-content h1 {
             font-size: 48px;
-            margin-bottom: 20px;
+            font-weight: 900;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
         }
-        
         .hero-content p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 21px;
+            margin-bottom: 32px;
         }
-        
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color) 60%, var(--light-brown));
             color: var(--white);
-            padding: 12px 30px;
+            padding: 14px 36px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            font-size: 19px;
+            box-shadow: 0 4px 12px rgba(139,90,43,0.13);
+            transition: background var(--transition), transform var(--transition);
+            border: none;
         }
-        
         .btn:hover {
-            background-color: var(--light-brown);
+            background: linear-gradient(90deg, var(--light-brown), var(--primary-color) 80%);
+            transform: translateY(-2px) scale(1.04);
         }
-        
         /* Services Section */
         .services {
             padding: 80px 0;
-            background-color: var(--cream);
+            background: linear-gradient(180deg,var(--cream) 85%, #fff 100%);
         }
-        
         .section-title {
             text-align: center;
             margin-bottom: 50px;
         }
-        
         .section-title h2 {
-            font-size: 36px;
+            font-size: 38px;
             color: var(--primary-color);
+            font-weight: 900;
+            letter-spacing: 1px;
             position: relative;
             display: inline-block;
             padding-bottom: 15px;
         }
-        
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -156,213 +186,273 @@
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 3px;
-            background-color: var(--light-brown);
+            height: 4px;
+            background: var(--light-brown);
+            border-radius: 2px;
         }
-        
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 36px;
         }
-        
         .service-card {
-            background-color: var(--white);
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 7px 25px rgba(139,90,43,0.07);
+            transition: transform var(--transition), box-shadow var(--transition);
+            position: relative;
         }
-        
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 13px 38px rgba(139,90,43,0.17);
         }
-        
         .service-img {
-            height: 200px;
+            height: 210px;
             overflow: hidden;
+            position: relative;
         }
-        
         .service-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
-        
         .service-card:hover .service-img img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
-        
         .service-content {
-            padding: 20px;
+            padding: 23px;
+            text-align: center;
         }
-        
         .service-content h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 23px;
+            margin-bottom: 11px;
             color: var(--primary-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        
         .service-content p {
-            margin-bottom: 15px;
+            margin-bottom: 17px;
             color: var(--dark-text);
+            min-height: 54px;
         }
-        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 0 60px;
+            background: var(--white);
+        }
+        .portfolio-slider {
+            max-width: 970px;
+            margin: auto;
+        }
+        .swiper {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(139,90,43,0.08);
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 370px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--primary-color) !important;
+        }
         /* Booking Section */
         .booking {
             padding: 80px 0;
-            background-color: var(--cream);
+            background: var(--cream);
         }
-        
         .booking-form {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            padding: 44px 30px;
+            border-radius: 12px;
+            box-shadow: 0 7px 25px rgba(139,90,43,0.10);
             max-width: 800px;
             margin: 0 auto;
         }
-        
         .form-group {
             margin-bottom: 20px;
         }
-        
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: var(--primary-color);
         }
-        
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 17px;
+            transition: border-color var(--transition);
         }
-        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
         .form-group textarea {
-            height: 120px;
+            height: 110px;
             resize: vertical;
         }
-        
         .form-submit {
             text-align: center;
         }
-        
+        /* Toast Notification */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(139,90,43,0.12);
+            font-weight: 700;
+            z-index: 9999;
+            letter-spacing: 1px;
+        }
         /* Contact Section */
         .contact {
             padding: 80px 0;
-            background-color: var(--white);
+            background: var(--white);
         }
-        
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 55px;
         }
-        
         .contact-info {
             text-align: center;
         }
-        
         .social-links {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
-        
         .social-link {
             display: inline-block;
-            width: 60px;
-            height: 60px;
+            width: 54px;
+            height: 54px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+            transition: transform var(--transition);
+            background: #fff;
         }
-        
         .social-link:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.05);
         }
-        
         .social-link img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
         .whatsapp-contact {
-            margin-top: 30px;
+            margin-top: 32px;
         }
-        
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
-            background-color: #25D366;
+            background: #25D366;
             color: white;
-            padding: 12px 25px;
+            padding: 13px 27px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            font-size: 18px;
+            transition: background var(--transition), transform var(--transition);
+            border: none;
+            gap: 9px;
         }
-        
         .whatsapp-btn:hover {
-            background-color: #128C7E;
+            background: #128C7E;
+            transform: scale(1.04);
         }
-        
         .whatsapp-btn i {
-            margin-right: 10px;
             font-size: 20px;
         }
-        
+        /* Complaint */
+        .complaint-form {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 30px 20px 15px;
+            box-shadow: 0 4px 20px rgba(139,90,43,0.09);
+        }
+        .complaint-form h3 {
+            margin-bottom: 13px;
+            font-size: 23px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
         /* Footer */
         footer {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: var(--white);
             padding: 50px 0 20px;
         }
-        
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-bottom: 30px;
         }
-        
         .footer-col h3 {
-            font-size: 20px;
+            font-size: 21px;
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
-        
         .footer-col h3::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 52px;
             height: 2px;
-            background-color: var(--light-brown);
+            background: var(--light-brown);
+            border-radius: 1px;
         }
-        
-        .footer-col p {
-            margin-bottom: 15px;
+        .footer-col p, .footer-col a, .footer-col li {
+            margin-bottom: 9px;
+            color: var(--cream);
+            font-size: 17px;
         }
-        
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-col a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .footer-col a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 19px;
+            border-top: 1px solid rgba(255,255,255,0.13);
+            font-size: 16px;
+            color: #e6e6e6;
         }
-        
         /* Camera Icon Animation */
         .camera-icon {
             position: fixed;
@@ -370,75 +460,160 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 24px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 26px;
+            box-shadow: 0 7px 25px rgba(139,90,43,0.15);
             z-index: 999;
             cursor: pointer;
             animation: pulse 2s infinite;
         }
-        
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1);}
+            50% { transform: scale(1.12);}
+            100% {transform: scale(1);}
         }
-        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(80px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        /* Testimonials */
+        .testimonials {
+            background: var(--cream);
+            padding: 55px 0 80px;
+        }
+        .testimonials-slider {
+            max-width: 800px;
+            margin: auto;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(139,90,43,0.08);
+            padding: 33px 23px 23px;
+            text-align: center;
+        }
+        .testimonial-card p {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 13px;
+        }
+        .testimonial-card .client {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        /* FAQ */
+        .faq {
+            padding: 54px 0 70px;
+            background: var(--white);
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .faq h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 32px;
+        }
+        .faq-item {
+            border: 1px solid #e0cfb2;
+            border-radius: 8px;
+            margin-bottom: 19px;
+            background: var(--cream);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 16px 23px;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--primary-color);
+            position: relative;
+        }
+        .faq-answer {
+            padding: 0 23px 18px 23px;
+            display: none;
+            color: var(--dark-text);
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+            animation: fadeInUp .6s;
+        }
+        .faq-item.open .faq-question:after {
+            content: "-";
+            position: absolute;
+            left: 15px;
+            font-size: 23px;
+        }
+        .faq-question:after {
+            content: "+";
+            position: absolute;
+            left: 15px;
+            font-size: 23px;
+        }
         /* Responsive Styles */
+        @media (max-width: 950px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
         @media (max-width: 768px) {
             .header-container {
                 padding: 15px;
             }
-            
             nav {
                 position: fixed;
                 top: 70px;
                 left: -100%;
                 width: 80%;
                 height: calc(100vh - 70px);
-                background-color: var(--white);
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                transition: left 0.3s;
+                background: var(--white);
+                box-shadow: 0 7px 20px rgba(0,0,0,0.09);
+                transition: left var(--transition);
                 z-index: 999;
             }
-            
             nav.active {
                 left: 0;
             }
-            
             nav ul {
                 flex-direction: column;
                 padding: 20px;
             }
-            
             nav ul li {
                 margin: 15px 0;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
+            .lang-switch {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
             .hero-content h1 {
-                font-size: 36px;
+                font-size: 34px;
             }
-            
             .hero-content p {
-                font-size: 18px;
+                font-size: 17px;
             }
-            
-            .social-links {
-                flex-wrap: wrap;
+            .service-img {
+                height: 160px;
             }
-            
-            .social-link {
-                width: 50px;
-                height: 50px;
+            .swiper-slide img {
+                height: 220px;
+            }
+        }
+        @media (max-width: 600px) {
+            .booking-form, .complaint-form {
+                padding: 17px 7px;
+            }
+            .testimonials-slider, .portfolio-slider, .faq-container {
+                padding-left: 0;
+                padding-right: 0;
             }
         }
     </style>
@@ -447,33 +622,36 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">Eyad<span>AlMakki</span></a>
+            <a href="index.html" class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/272/272512.png" alt="Eyad AlMakki">
+                Eyad<span>AlMakki</span>
+            </a>
+            <button class="lang-switch" id="langBtn">EN</button>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             <nav id="mainNav">
                 <ul>
-                    <li><a href="#home">الرئيسية</a></li>
+                    <li class="active"><a href="#home">الرئيسية</a></li>
                     <li><a href="#services">خدماتنا</a></li>
                     <li><a href="#portfolio">معرض الأعمال</a></li>
                     <li><a href="#booking">الحجز</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
                     <li><a href="#contact">تواصل معنا</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
                 <h1>لحظاتك الثمينة تستحق أفضل تصوير</h1>
-                <p>مصور احترافي متخصص في تصوير الأعراس، الحفلات، التخرج وجميع المناسبات</p>
+                <p>إياد المكي - مصور محترف متخصص في تصوير الأعراس، الحفلات، التخرج وجميع المناسبات</p>
                 <a href="#booking" class="btn">احجز موعدك الآن</a>
             </div>
         </div>
     </section>
-
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
@@ -481,45 +659,102 @@
                 <h2>خدماتنا</h2>
             </div>
             <div class="services-grid">
-                <!-- Service 1 - Wedding -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="تصوير أعراس">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="تصوير الأعراس">
                     </div>
                     <div class="service-content">
-                        <h3>تصوير الأعراس</h3>
-                        <p>توثيق كافة لحظات فرحتك باحترافية عالية وجودة فائقة</p>
+                        <h3><i class="fas fa-ring"></i> تصوير الأعراس</h3>
+                        <p>توثيق لحظات فرحتك بأرقى الأساليب الفنية وأحدث التقنيات لضمان أجمل الذكريات.</p>
                         <a href="#booking" class="btn">احجز الآن</a>
                     </div>
                 </div>
-                
-                <!-- Service 2 - Henna -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="تصوير حناء">
+                        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=800&q=80" alt="تصوير الحناء">
                     </div>
                     <div class="service-content">
-                        <h3>تصوير الحناء</h3>
-                        <p>توثيق أجمل لحظات حناء العروس بتصوير إبداعي مميز</p>
+                        <h3><i class="fas fa-leaf"></i> تصوير الحناء</h3>
+                        <p>توثيق أجمل لحظات حناء العروس بتصوير إبداعي مميز ولمسات جمالية.</p>
                         <a href="#booking" class="btn">احجز الآن</a>
                     </div>
                 </div>
-                
-                <!-- Service 3 - Graduation -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="تصوير تخرج">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="تصوير التخرج">
                     </div>
                     <div class="service-content">
-                        <h3>تصوير التخرج</h3>
-                        <p>احتفظ بذكرى تخرجك بأجمل الصور الاحترافية</p>
+                        <h3><i class="fas fa-graduation-cap"></i> تصوير التخرج</h3>
+                        <p>احتفظ بذكرى تخرجك بأجمل الصور الاحترافية التي تعكس نجاحك وفرحتك.</p>
                         <a href="#booking" class="btn">احجز الآن</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>معرض الأعمال</h2>
+            </div>
+            <div class="portfolio-slider">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=900&q=80" alt="Wedding Shoot">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80" alt="Henna Night">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Graduation">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1429087969512-1e85aab2683d?auto=format&fit=crop&w=900&q=80" alt="Outdoor Event">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80" alt="Family Event">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء العملاء</h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="swiper testiSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p>أفضل مصور تعاملت معه، الصور كانت رائعة والتسليم سريع. شكراً إياد!</p>
+                                <div class="client">سارة من جدة</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p>احترافية عالية وتفاصيل دقيقة بكل صورة. أنصح به دائماً!</p>
+                                <div class="client">محمد من مكة</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p>وثق لنا أجمل حفل تخرج. صور إبداعية وتعاون رائع.</p>
+                                <div class="client">ريم من الرياض</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Booking Section -->
     <section class="booking" id="booking">
         <div class="container">
@@ -527,14 +762,14 @@
                 <h2>حجز موعد</h2>
             </div>
             <div class="booking-form">
-                <form id="bookingForm">
+                <form id="bookingForm" autocomplete="off">
                     <div class="form-group">
                         <label for="name">الاسم الكامل</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">رقم الجوال</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" pattern="05\d{8}|5\d{8}" maxlength="10" title="أدخل رقم جوال سعودي صحيح" required>
                     </div>
                     <div class="form-group">
                         <label for="city">المدينة</label>
@@ -588,7 +823,28 @@
             </div>
         </div>
     </section>
-
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2>الأسئلة الشائعة</h2>
+            <div class="faq-item">
+                <div class="faq-question">كيف يمكنني حجز موعد تصوير؟</div>
+                <div class="faq-answer">يمكنك الحجز مباشرة عبر نموذج الحجز في الموقع أو التواصل عبر واتساب.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">هل يمكن التصوير خارج جدة؟</div>
+                <div class="faq-answer">نعم، يغطي المصور عدة مدن في المملكة حسب التنسيق المسبق.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">متى أستلم الصور بعد التصوير؟</div>
+                <div class="faq-answer">يتم تسليم الصور خلال 3-7 أيام عمل حسب نوع المناسبة.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">هل أستطيع طلب تعديلات على الصور؟</div>
+                <div class="faq-answer">بكل تأكيد، يحق لك طلب تعديلات بسيطة على الصور النهائية.</div>
+            </div>
+        </div>
+    </section>
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
@@ -599,16 +855,16 @@
                 <div class="contact-info">
                     <h3>وسائل التواصل الاجتماعي</h3>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/eyadalmakki_photography" target="_blank" class="social-link">
+                        <a href="https://www.instagram.com/eyadalmakki_photography" target="_blank" class="social-link" aria-label="Instagram">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="إنستغرام">
                         </a>
-                        <a href="https://www.tiktok.com/@eyadalmakki?_t=zm-8uuf5p901qw&_r=1" target="_blank" class="social-link">
+                        <a href="https://www.tiktok.com/@eyadalmakki?_t=zm-8uuf5p901qw&_r=1" target="_blank" class="social-link" aria-label="TikTok">
                             <img src="https://freelogopng.com/images/all_img/1657045397tiktok-icon-png.png" alt="تيك توك">
                         </a>
-                        <a href="https://www.snapchat.com/add/eyadalmakki24?share_id=zcAIkL8hdU4&locale=ar-AE" target="_blank" class="social-link">
+                        <a href="https://www.snapchat.com/add/eyadalmakki24?share_id=zcAIkL8hdU4&locale=ar-AE" target="_blank" class="social-link" aria-label="Snapchat">
                             <img src="https://cdn-icons-png.flaticon.com/512/3669/3669927.png" alt="سناب شات">
                         </a>
-                        <a href="https://www.facebook.com/share/1H1cWFP3w6/" target="_blank" class="social-link">
+                        <a href="https://www.facebook.com/share/1H1cWFP3w6/" target="_blank" class="social-link" aria-label="Facebook">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png" alt="فيسبوك">
                         </a>
                     </div>
@@ -621,14 +877,14 @@
                 </div>
                 <div class="complaint-form">
                     <h3>الشكاوى والاقتراحات</h3>
-                    <form id="complaintForm">
+                    <form id="complaintForm" autocomplete="off">
                         <div class="form-group">
                             <label for="complaintName">الاسم</label>
                             <input type="text" id="complaintName" name="complaintName" required>
                         </div>
                         <div class="form-group">
                             <label for="complaintPhone">رقم الجوال</label>
-                            <input type="tel" id="complaintPhone" name="complaintPhone" required>
+                            <input type="tel" id="complaintPhone" name="complaintPhone" pattern="05\d{8}|5\d{8}" maxlength="10" title="أدخل رقم جوال سعودي صحيح" required>
                         </div>
                         <div class="form-group">
                             <label for="complaintMessage">رسالتك</label>
@@ -642,7 +898,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -658,12 +913,13 @@
                         <li><a href="#services">خدماتنا</a></li>
                         <li><a href="#portfolio">معرض الأعمال</a></li>
                         <li><a href="#booking">الحجز</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <p>واتساب: +966 50 085 0980</p>
-                    <p>البريد الإلكتروني: info@eyadalmakki.com</p>
+                    <p>واتساب: <a href="https://wa.me/966500850980" style="color:#fff;">+966 50 085 0980</a></p>
+                    <p>البريد الإلكتروني: <a href="mailto:info@eyadalmakki.com" style="color:#fff;">info@eyadalmakki.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -671,71 +927,95 @@
             </div>
         </div>
     </footer>
-
     <!-- Camera Icon -->
-    <div class="camera-icon" onclick="window.location.href='#booking'">
+    <div class="camera-icon" onclick="window.location.href='#booking'" title="احجز موعدك">
         <i class="fas fa-camera"></i>
     </div>
-
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+    <!-- SwiperJS Slider -->
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
     <script>
+        // Sticky header color on scroll
+        window.addEventListener('scroll', function() {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 40);
+        });
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainNav = document.getElementById('mainNav');
-        
         mobileMenuBtn.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-        
         // Smooth Scrolling for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
                 if (this.getAttribute('href') === '#') return;
-                
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     window.scrollTo({
                         top: target.offsetTop - 70,
                         behavior: 'smooth'
                     });
-                    
                     // Close mobile menu if open
                     if (mainNav.classList.contains('active')) {
                         mainNav.classList.remove('active');
                         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     }
+                    // Highlight active menu
+                    document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active'));
+                    this.parentElement.classList.add('active');
                 }
             });
         });
-        
+        // Swiper Portfolio
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            autoplay: { delay: 2600, disableOnInteraction: false },
+            effect: 'fade'
+        });
+        // Swiper Testimonials
+        var testiSwiper = new Swiper(".testiSwiper", {
+            loop: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            autoplay: { delay: 3900, disableOnInteraction: false }
+        });
+        // Toast Notification
+        function showToast(msg) {
+            var toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(()=>{ toast.style.display = 'none'; }, 3200);
+        }
         // Booking Form Submission
         const bookingForm = document.getElementById('bookingForm');
         bookingForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const city = document.getElementById('city').value;
             const date = document.getElementById('date').value;
             const event = document.getElementById('event').value;
-            const details = document.getElementById('details').value;
+            const details = document.getElementById('details').value.trim();
             const saveInfo = document.getElementById('saveInfo').checked;
-            
+            // Validate phone
+            const phoneRegex = /^(05\d{8}|5\d{8})$/;
+            if(!phoneRegex.test(phone)) {
+                showToast("يرجى إدخال رقم جوال سعودي صحيح.");
+                return;
+            }
             // Format date for display
             const formattedDate = new Date(date).toLocaleDateString('ar-SA');
-            
             // Create WhatsApp message
-            const message = `السلام عليكم... داير استفسر عن حجز في يوم (${formattedDate}) المناسبه (${event}) و المدينه(${city})`;
-            
+            let message = `السلام عليكم... أود الاستفسار عن حجز في يوم (${formattedDate}) المناسبة (${event}) المدينة (${city})`;
+            if(details) message += `\nتفاصيل إضافية: ${details}`;
             // Encode message for WhatsApp URL
             const encodedMessage = encodeURIComponent(message);
-            
             // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/966500850980?text=${encodedMessage}`, '_blank');
-            
             // Save user info if requested
             if (saveInfo) {
                 localStorage.setItem('userInfo', JSON.stringify({
@@ -744,39 +1024,28 @@
                     city: city
                 }));
             }
-            
             // Reset form
             bookingForm.reset();
-            
-            // Show success message
-            alert('تم إرسال طلب الحجز بنجاح، سيتم التواصل معك عبر واتساب لتأكيد الحجز.');
+            showToast('تم إرسال طلب الحجز بنجاح، سنتواصل معك عبر واتساب لتأكيد الحجز.');
         });
-        
         // Complaint Form Submission
         const complaintForm = document.getElementById('complaintForm');
         complaintForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const name = document.getElementById('complaintName').value;
-            const phone = document.getElementById('complaintPhone').value;
-            const message = document.getElementById('complaintMessage').value;
-            
-            // Create WhatsApp message for complaint
+            const name = document.getElementById('complaintName').value.trim();
+            const phone = document.getElementById('complaintPhone').value.trim();
+            const message = document.getElementById('complaintMessage').value.trim();
+            const phoneRegex = /^(05\d{8}|5\d{8})$/;
+            if(!phoneRegex.test(phone)) {
+                showToast("يرجى إدخال رقم جوال سعودي صحيح.");
+                return;
+            }
             const complaintMessage = `شكوى/اقتراح من ${name} (${phone}): ${message}`;
-            
-            // Encode message for WhatsApp URL
             const encodedComplaint = encodeURIComponent(complaintMessage);
-            
-            // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/966500850980?text=${encodedComplaint}`, '_blank');
-            
-            // Reset form
             complaintForm.reset();
-            
-            // Show success message
-            alert('تم إرسال شكواك بنجاح، سيتم التواصل معك عبر واتساب إذا لزم الأمر.');
+            showToast('تم إرسال الشكوى بنجاح، سنتواصل معك عبر واتساب إذا لزم الأمر.');
         });
-        
         // Load saved user info if available
         window.addEventListener('DOMContentLoaded', () => {
             const savedInfo = localStorage.getItem('userInfo');
@@ -785,11 +1054,21 @@
                 document.getElementById('name').value = userInfo.name || '';
                 document.getElementById('phone').value = userInfo.phone || '';
                 document.getElementById('city').value = userInfo.city || '';
-                
-                // Auto-check the save info checkbox
                 document.getElementById('saveInfo').checked = true;
             }
         });
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                const item = this.parentElement;
+                document.querySelectorAll('.faq-item').forEach(i => { if(i!==item) i.classList.remove('open'); });
+                item.classList.toggle('open');
+            });
+        });
+        // Language Switcher (Demo only - Not functional)
+        document.getElementById('langBtn').addEventListener('click', function() {
+            showToast("English version coming soon...");
+        });
     </script>
 </body>
-                </html>
+</html>
