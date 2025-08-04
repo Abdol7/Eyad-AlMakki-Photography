@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eyad AlMakki Photography - مصور احترافي للأعراس والمناسبات</title>
+    <meta name="description" content="إياد المكي، مصور محترف متخصص في تصوير الأعراس والمناسبات بخبرة وجودة عالية. احجز موعدك الآن لتوثيق أجمل لحظاتك.">
+    <meta name="keywords" content="تصوير, أعراس, مناسبات, مصور, إياد المكي, تصوير حفلات, تصوير تخرج, تصوير حناء, Wedding Photographer, Saudi Arabia">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272512.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css"/>
     <style>
         :root {
             --primary-color: #8B5A2B;
             --light-brown: #D2B48C;
             --cream: #F5F5DC;
             --white: #FFFFFF;
-            --dark-text: #333333;
+            --dark-text: #222;
+            --transition: 0.3s cubic-bezier(.47,1.64,.41,.8);
         }
         * {
             margin: 0;
@@ -23,7 +28,8 @@
         body {
             background-color: var(--white);
             color: var(--dark-text);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 18px;
         }
         .container {
             width: 90%;
@@ -33,13 +39,17 @@
         }
         /* Header Styles */
         header {
-            background-color: rgba(255,255,255,0.85); /* شفاف */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: background 0.5s;
+            transition: background var(--transition);
+            backdrop-filter: blur(4px);
+        }
+        header.scrolled {
+            background: rgba(139, 90, 43, 0.97);
         }
         .header-container {
             display: flex;
@@ -48,14 +58,21 @@
             padding: 15px 0;
         }
         .logo {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: var(--primary-color);
             text-decoration: none;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.11);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .logo img {
+            height: 36px;
+            width: 36px;
         }
         .logo span {
             color: var(--light-brown);
+            font-weight: 900;
         }
         nav ul {
             display: flex;
@@ -68,27 +85,42 @@
             text-decoration: none;
             color: var(--dark-text);
             font-weight: 500;
-            transition: color 0.3s;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.11);
+            transition: color var(--transition);
         }
-        nav ul li a:hover {
+        nav ul li a:hover,
+        nav ul li.active a {
             color: var(--primary-color);
         }
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--primary-color);
             cursor: pointer;
         }
+        .lang-switch {
+            margin-right: 20px;
+            background: var(--cream);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 20px;
+            padding: 5px 17px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background var(--transition);
+        }
+        .lang-switch:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
         /* Hero Section */
         .hero {
-            background: linear-gradient(120deg, rgba(139,90,43,0.7) 0%, rgba(210,180,140,0.6) 100%), url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80');
-            background-blend-mode: overlay;
+            background: linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.40)),
+            url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -97,131 +129,48 @@
             margin-top: 70px;
             position: relative;
         }
+        .hero-content {
+            max-width: 650px;
+            margin: auto;
+            animation: fadeInUp 1.2s;
+        }
         .hero-content h1 {
             font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 0 3px 16px rgba(0,0,0,0.3);
+            font-weight: 900;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
         }
         .hero-content p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.22);
+            font-size: 21px;
+            margin-bottom: 32px;
         }
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color) 60%, var(--light-brown));
             color: var(--white);
-            padding: 12px 30px;
+            padding: 14px 36px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            font-size: 19px;
+            box-shadow: 0 4px 12px rgba(139,90,43,0.13);
+            transition: background var(--transition), transform var(--transition);
+            border: none;
         }
         .btn:hover {
-            background-color: var(--light-brown);
-        }
-        /* Fade in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s, transform 0.8s;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-            background-color: var(--cream);
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        .section-title h2::before {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 0 auto 10px;
-            border-radius: 2px;
-        }
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--light-brown);
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .service-card {
-            background-color: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            position: relative;
-        }
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.03);
-        }
-        .service-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-        .service-content {
-            padding: 20px;
-        }
-        .service-content h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        .service-content p {
-            margin-bottom: 15px;
-            color: var(--dark-text);
-        }
-        .service-icon {
-            font-size: 32px;
-            color: var(--primary-color);
-            margin: 16px auto 0;
-            text-align: center;
+            background: linear-gradient(90deg, var(--light-brown), var(--primary-color) 80%);
+            transform: translateY(-2px) scale(1.04);
         }
         /* Booking Section */
         .booking {
             padding: 80px 0;
-            background-color: var(--cream);
+            background: var(--cream);
         }
         .booking-form {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            padding: 44px 30px;
+            border-radius: 12px;
+            box-shadow: 0 7px 25px rgba(139,90,43,0.10);
             max-width: 800px;
             margin: 0 auto;
         }
@@ -240,25 +189,75 @@
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 17px;
+            transition: border-color var(--transition);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
         }
         .form-group textarea {
-            height: 120px;
+            height: 110px;
             resize: vertical;
         }
         .form-submit {
             text-align: center;
         }
+        /* Event Types Cards */
+        .event-types {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .event-type-card {
+            flex: 1 1 260px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 15px #ccb88a1a;
+            text-align: center;
+            padding: 22px;
+            max-width: 340px;
+        }
+        .event-type-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 190px;
+            object-fit: cover;
+        }
+        .event-type-card h3 {
+            color: #8B5A2B;
+            font-weight: 700;
+        }
+        /* Toast Notification */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(139,90,43,0.12);
+            font-weight: 700;
+            z-index: 9999;
+            letter-spacing: 1px;
+        }
         /* Contact Section */
         .contact {
             padding: 80px 0;
-            background-color: var(--white);
+            background: var(--white);
         }
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 55px;
         }
         .contact-info {
             text-align: center;
@@ -272,15 +271,16 @@
         }
         .social-link {
             display: inline-block;
-            width: 60px;
-            height: 60px;
+            width: 54px;
+            height: 54px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+            transition: transform var(--transition);
+            background: #fff;
         }
         .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
+            transform: translateY(-5px) scale(1.05);
         }
         .social-link img {
             width: 100%;
@@ -288,59 +288,45 @@
             object-fit: cover;
         }
         .whatsapp-contact {
-            margin-top: 30px;
+            margin-top: 32px;
         }
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
-            background-color: #25D366;
+            background: #25D366;
             color: white;
-            padding: 12px 25px;
+            padding: 13px 27px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            font-size: 18px;
+            transition: background var(--transition), transform var(--transition);
+            border: none;
+            gap: 9px;
         }
         .whatsapp-btn:hover {
-            background-color: #128C7E;
+            background: #128C7E;
+            transform: scale(1.04);
         }
         .whatsapp-btn i {
-            margin-right: 10px;
             font-size: 20px;
         }
-        /* Testimonials Section */
-        .testimonials {
-            padding: 60px 0;
+        /* Complaint */
+        .complaint-form {
             background: var(--cream);
-        }
-        .testimonials-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
-        .testimonial-card {
-            background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 24px 30px;
-            max-width: 350px;
-            text-align: center;
-            font-size: 18px;
-            transition: transform 0.3s;
+            padding: 30px 20px 15px;
+            box-shadow: 0 4px 20px rgba(139,90,43,0.09);
         }
-        .testimonial-card:hover {
-            transform: translateY(-8px) scale(1.03);
-        }
-        .testimonial-card span {
-            display: block;
-            margin-top: 12px;
+        .complaint-form h3 {
+            margin-bottom: 13px;
+            font-size: 23px;
             color: var(--primary-color);
-            font-weight: bold;
+            font-weight: 700;
         }
         /* Footer */
         footer {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: var(--white);
             padding: 50px 0 20px;
         }
@@ -351,27 +337,47 @@
             margin-bottom: 30px;
         }
         .footer-col h3 {
-            font-size: 20px;
+            font-size: 21px;
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
         .footer-col h3::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 52px;
             height: 2px;
-            background-color: var(--light-brown);
+            background: var(--light-brown);
+            border-radius: 1px;
         }
-        .footer-col p {
-            margin-bottom: 15px;
+        .footer-col p, .footer-col a, .footer-col li {
+            margin-bottom: 9px;
+            color: var(--cream);
+            font-size: 17px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-col a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .footer-col a:hover {
+            color: #fff;
+            text-decoration: underline;
         }
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 19px;
+            border-top: 1px solid rgba(255,255,255,0.13);
+            font-size: 16px;
+            color: #e6e6e6;
         }
         /* Camera Icon Animation */
         .camera-icon {
@@ -380,48 +386,92 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 24px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 26px;
+            box-shadow: 0 7px 25px rgba(139,90,43,0.15);
             z-index: 999;
             cursor: pointer;
             animation: pulse 2s infinite;
-        }
-        /* واتساب عائم */
-        .whatsapp-floating {
-            position: fixed;
-            bottom: 30px;
-            right: 100px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 32px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            z-index: 999;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            animation: pulse 2s infinite;
-        }
-        .whatsapp-floating:hover {
-            background: #128C7E;
-            transform: scale(1.08);
         }
         @keyframes pulse {
             0% { transform: scale(1);}
-            50% { transform: scale(1.1);}
-            100% { transform: scale(1);}
+            50% { transform: scale(1.12);}
+            100% {transform: scale(1);}
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(80px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        /* FAQ */
+        .faq {
+            padding: 54px 0 70px;
+            background: var(--white);
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .faq h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 32px;
+        }
+        .faq-item {
+            border: 1px solid #e0cfb2;
+            border-radius: 8px;
+            margin-bottom: 19px;
+            background: var(--cream);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 16px 23px;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--primary-color);
+            position: relative;
+        }
+        .faq-answer {
+            padding: 0 23px 18px 23px;
+            display: none;
+            color: var(--dark-text);
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+            animation: fadeInUp .6s;
+        }
+        .faq-item.open .faq-question:after {
+            content: "-";
+            position: absolute;
+            left: 15px;
+            font-size: 23px;
+        }
+        .faq-question:after {
+            content: "+";
+            position: absolute;
+            left: 15px;
+            font-size: 23px;
         }
         /* Responsive Styles */
+        @media (max-width: 950px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 900px) {
+            .event-types {
+                flex-direction: column;
+                align-items: center;
+            }
+            .event-type-card {
+                max-width: 100%;
+            }
+        }
         @media (max-width: 768px) {
             .header-container {
                 padding: 15px;
@@ -432,9 +482,9 @@
                 left: -100%;
                 width: 80%;
                 height: calc(100vh - 70px);
-                background-color: var(--white);
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                transition: left 0.3s;
+                background: var(--white);
+                box-shadow: 0 7px 20px rgba(0,0,0,0.09);
+                transition: left var(--transition);
                 z-index: 999;
             }
             nav.active {
@@ -450,26 +500,27 @@
             .mobile-menu-btn {
                 display: block;
             }
+            .lang-switch {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
             .hero-content h1 {
-                font-size: 36px;
+                font-size: 34px;
             }
             .hero-content p {
-                font-size: 18px;
+                font-size: 17px;
             }
-            .social-links {
-                flex-wrap: wrap;
+            .event-type-card img {
+                height: 120px;
             }
-            .social-link {
-                width: 50px;
-                height: 50px;
+        }
+        @media (max-width: 600px) {
+            .booking-form, .complaint-form {
+                padding: 17px 7px;
             }
-            .testimonials-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            .whatsapp-floating {
-                right: 30px;
-                bottom: 100px;
+            .testimonials-slider, .portfolio-slider, .faq-container {
+                padding-left: 0;
+                padding-right: 0;
             }
         }
     </style>
@@ -478,15 +529,20 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">Eyad<span>AlMakki</span></a>
+            <a href="index.html" class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/272/272512.png" alt="Eyad AlMakki">
+                Eyad<span>AlMakki</span>
+            </a>
+            <button class="lang-switch" id="langBtn">EN</button>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             <nav id="mainNav">
                 <ul>
-                    <li><a href="#home">الرئيسية</a></li>
+                    <li class="active"><a href="#home">الرئيسية</a></li>
                     <li><a href="#services">خدماتنا</a></li>
                     <li><a href="#booking">الحجز</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
                     <li><a href="#contact">تواصل معنا</a></li>
                 </ul>
             </nav>
@@ -495,80 +551,28 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content fade-in">
+            <div class="hero-content">
                 <h1>لحظاتك الثمينة تستحق أفضل تصوير</h1>
-                <p>مصور احترافي متخصص في تصوير الأعراس، الحفلات، التخرج وجميع المناسبات</p>
+                <p>إياد المكي - مصور محترف متخصص في تصوير الأعراس، الحفلات، التخرج وجميع المناسبات</p>
                 <a href="#booking" class="btn">احجز موعدك الآن</a>
-            </div>
-        </div>
-    </section>
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>خدماتنا</h2>
-            </div>
-            <div class="services-grid">
-                <!-- Service 1 - Wedding -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80" alt="تصوير الأعراس">
-                    </div>
-                    <div class="service-content">
-                        <h3>تصوير الأعراس</h3>
-                        <p>توثيق كافة لحظات فرحتك باحترافية عالية وجودة فائقة</p>
-                        <a href="#booking" class="btn">احجز الآن</a>
-                    </div>
-                </div>
-                <!-- Service 2 - Henna -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-leaf"></i>
-                    </div>
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80" alt="تصوير الحنه">
-                    </div>
-                    <div class="service-content">
-                        <h3>تصوير الحنه</h3>
-                        <p>توثيق أجمل لحظات حناء العروس بتصوير إبداعي مميز</p>
-                        <a href="#booking" class="btn">احجز الآن</a>
-                    </div>
-                </div>
-                <!-- Service 3 - Graduation -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="تصوير التخرج">
-                    </div>
-                    <div class="service-content">
-                        <h3>تصوير التخرج</h3>
-                        <p>احتفظ بذكرى تخرجك بأجمل الصور الاحترافية</p>
-                        <a href="#booking" class="btn">احجز الآن</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
     <!-- Booking Section -->
     <section class="booking" id="booking">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>حجز موعد</h2>
+            <div class="section-title">
+                <h2>احجز موعدك الآن</h2>
             </div>
-            <div class="booking-form fade-in">
-                <form id="bookingForm">
+            <div class="booking-form">
+                <form id="bookingForm" autocomplete="off">
                     <div class="form-group">
-                        <label for="name">الاسم الكامل</label>
+                        <label for="name">الاسم</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">رقم الجوال</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" pattern="05\d{8}|5\d{8}" maxlength="10" title="أدخل رقم جوال سعودي صحيح" required>
                     </div>
                     <div class="form-group">
                         <label for="city">المدينة</label>
@@ -620,28 +624,71 @@
                     </div>
                 </form>
             </div>
+            <!-- الأقسام الثلاثة: زواج، حناء، تخرج -->
+            <div class="event-types">
+                <!-- زواج -->
+                <div class="event-type-card">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="تصوير زواج">
+                    <h3>تصوير زواج</h3>
+                    <p>تغطية كاملة لأهم لحظات حفل الزفاف باحترافية وجودة عالية لتوثيق ذكرياتكم الخالدة.</p>
+                </div>
+                <!-- حناء -->
+                <div class="event-type-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="تصوير حناء">
+                    <h3>تصوير حناء</h3>
+                    <p>توثيق أجواء ليلة الحناء المميزة بكل تفاصيلها، صور عائلية ولقطات جمالية للذكرى.</p>
+                </div>
+                <!-- تخرج -->
+                <div class="event-type-card">
+                    <img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=400&q=80" alt="تصوير تخرج">
+                    <h3>تصوير تخرج</h3>
+                    <p>لحظات الفخر والإنجاز، جلسات تصوير فردية وجماعية للطلاب والمتخرجين.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2>الأسئلة الشائعة</h2>
+            <div class="faq-item">
+                <div class="faq-question">كيف يمكنني حجز موعد تصوير؟</div>
+                <div class="faq-answer">يمكنك الحجز مباشرة عبر نموذج الحجز في الموقع أو التواصل عبر واتساب.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">هل يمكن التصوير خارج جدة؟</div>
+                <div class="faq-answer">نعم، يغطي المصور عدة مدن في المملكة حسب التنسيق المسبق.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">متى أستلم الصور بعد التصوير؟</div>
+                <div class="faq-answer">يتم تسليم الصور خلال 3-7 أيام عمل حسب نوع المناسبة.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">هل أستطيع طلب تعديلات على الصور؟</div>
+                <div class="faq-answer">بكل تأكيد، يحق لك طلب تعديلات بسيطة على الصور النهائية.</div>
+            </div>
         </div>
     </section>
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-title fade-in">
+            <div class="section-title">
                 <h2>تواصل معنا</h2>
             </div>
             <div class="contact-container">
-                <div class="contact-info fade-in">
+                <div class="contact-info">
                     <h3>وسائل التواصل الاجتماعي</h3>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/eyadalmakki_photography" target="_blank" class="social-link">
+                        <a href="https://www.instagram.com/eyadalmakki_photography" target="_blank" class="social-link" aria-label="Instagram">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="إنستغرام">
                         </a>
-                        <a href="https://www.tiktok.com/@eyadalmakki?_t=zm-8uuf5p901qw&_r=1" target="_blank" class="social-link">
+                        <a href="https://www.tiktok.com/@eyadalmakki?_t=zm-8uuf5p901qw&_r=1" target="_blank" class="social-link" aria-label="TikTok">
                             <img src="https://freelogopng.com/images/all_img/1657045397tiktok-icon-png.png" alt="تيك توك">
                         </a>
-                        <a href="https://www.snapchat.com/add/eyadalmakki24?share_id=zcAIkL8hdU4&locale=ar-AE" target="_blank" class="social-link">
+                        <a href="https://www.snapchat.com/add/eyadalmakki24?share_id=zcAIkL8hdU4&locale=ar-AE" target="_blank" class="social-link" aria-label="Snapchat">
                             <img src="https://cdn-icons-png.flaticon.com/512/3669/3669927.png" alt="سناب شات">
                         </a>
-                        <a href="https://www.facebook.com/share/1H1cWFP3w6/" target="_blank" class="social-link">
+                        <a href="https://www.facebook.com/share/1H1cWFP3w6/" target="_blank" class="social-link" aria-label="Facebook">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png" alt="فيسبوك">
                         </a>
                     </div>
@@ -652,16 +699,16 @@
                         </a>
                     </div>
                 </div>
-                <div class="complaint-form fade-in">
+                <div class="complaint-form">
                     <h3>الشكاوى والاقتراحات</h3>
-                    <form id="complaintForm">
+                    <form id="complaintForm" autocomplete="off">
                         <div class="form-group">
                             <label for="complaintName">الاسم</label>
                             <input type="text" id="complaintName" name="complaintName" required>
                         </div>
                         <div class="form-group">
                             <label for="complaintPhone">رقم الجوال</label>
-                            <input type="tel" id="complaintPhone" name="complaintPhone" required>
+                            <input type="tel" id="complaintPhone" name="complaintPhone" pattern="05\d{8}|5\d{8}" maxlength="10" title="أدخل رقم جوال سعودي صحيح" required>
                         </div>
                         <div class="form-group">
                             <label for="complaintMessage">رسالتك</label>
@@ -671,28 +718,6 @@
                             <button type="submit" class="btn">إرسال الشكوى</button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials Section -->
-    <section class="testimonials fade-in">
-        <div class="container">
-            <div class="section-title">
-                <h2>آراء العملاء</h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p>"خدمة راقية وصور رائعة!"</p>
-                    <span>- محمد، جدة</span>
-                </div>
-                <div class="testimonial-card">
-                    <p>"التزام واحترافية في التصوير والتعامل."</p>
-                    <span>- هدى، مكة</span>
-                </div>
-                <div class="testimonial-card">
-                    <p>"أجمل ذكرى تخرج بفضل صوركم!"</p>
-                    <span>- عبدالعزيز، الطائف</span>
                 </div>
             </div>
         </div>
@@ -711,12 +736,13 @@
                         <li><a href="#home">الرئيسية</a></li>
                         <li><a href="#services">خدماتنا</a></li>
                         <li><a href="#booking">الحجز</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <p>واتساب: +966 50 085 0980</p>
-                    <p>البريد الإلكتروني: info@eyadalmakki.com</p>
+                    <p>واتساب: <a href="https://wa.me/966500850980" style="color:#fff;">+966 50 085 0980</a></p>
+                    <p>البريد الإلكتروني: <a href="mailto:info@eyadalmakki.com" style="color:#fff;">info@eyadalmakki.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -725,14 +751,16 @@
         </div>
     </footer>
     <!-- Camera Icon -->
-    <div class="camera-icon" onclick="window.location.href='#booking'">
+    <div class="camera-icon" onclick="window.location.href='#booking'" title="احجز موعدك">
         <i class="fas fa-camera"></i>
     </div>
-    <!-- WhatsApp Floating Button -->
-    <a class="whatsapp-floating" href="https://wa.me/966500850980" target="_blank" title="تواصل واتساب">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Toast Notification -->
+    <div id="toast"></div>
     <script>
+        // Sticky header color on scroll
+        window.addEventListener('scroll', function() {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 40);
+        });
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainNav = document.getElementById('mainNav');
@@ -752,28 +780,51 @@
                         top: target.offsetTop - 70,
                         behavior: 'smooth'
                     });
+                    // Close mobile menu if open
                     if (mainNav.classList.contains('active')) {
                         mainNav.classList.remove('active');
                         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     }
+                    // Highlight active menu
+                    document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active'));
+                    this.parentElement.classList.add('active');
                 }
             });
         });
+        // Toast Notification
+        function showToast(msg) {
+            var toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(()=>{ toast.style.display = 'none'; }, 3200);
+        }
         // Booking Form Submission
         const bookingForm = document.getElementById('bookingForm');
         bookingForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const city = document.getElementById('city').value;
             const date = document.getElementById('date').value;
             const event = document.getElementById('event').value;
-            const details = document.getElementById('details').value;
+            const details = document.getElementById('details').value.trim();
             const saveInfo = document.getElementById('saveInfo').checked;
+            // Validate phone
+            const phoneRegex = /^(05\d{8}|5\d{8})$/;
+            if(!phoneRegex.test(phone)) {
+                showToast("يرجى إدخال رقم جوال سعودي صحيح.");
+                return;
+            }
+            // Format date for display
             const formattedDate = new Date(date).toLocaleDateString('ar-SA');
-            const message = `السلام عليكم... داير استفسر عن حجز في يوم (${formattedDate}) المناسبه (${event}) و المدينه(${city})`;
+            // Create WhatsApp message
+            let message = `السلام عليكم... أود الاستفسار عن حجز في يوم (${formattedDate}) المناسبة (${event}) المدينة (${city})`;
+            if(details) message += `\nتفاصيل إضافية: ${details}`;
+            // Encode message for WhatsApp URL
             const encodedMessage = encodeURIComponent(message);
+            // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/966500850980?text=${encodedMessage}`, '_blank');
+            // Save user info if requested
             if (saveInfo) {
                 localStorage.setItem('userInfo', JSON.stringify({
                     name: name,
@@ -781,21 +832,27 @@
                     city: city
                 }));
             }
+            // Reset form
             bookingForm.reset();
-            alert('تم إرسال طلب الحجز بنجاح، سيتم التواصل معك عبر واتساب لتأكيد الحجز.');
+            showToast('تم إرسال طلب الحجز بنجاح، سنتواصل معك عبر واتساب لتأكيد الحجز.');
         });
         // Complaint Form Submission
         const complaintForm = document.getElementById('complaintForm');
         complaintForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('complaintName').value;
-            const phone = document.getElementById('complaintPhone').value;
-            const message = document.getElementById('complaintMessage').value;
+            const name = document.getElementById('complaintName').value.trim();
+            const phone = document.getElementById('complaintPhone').value.trim();
+            const message = document.getElementById('complaintMessage').value.trim();
+            const phoneRegex = /^(05\d{8}|5\d{8})$/;
+            if(!phoneRegex.test(phone)) {
+                showToast("يرجى إدخال رقم جوال سعودي صحيح.");
+                return;
+            }
             const complaintMessage = `شكوى/اقتراح من ${name} (${phone}): ${message}`;
             const encodedComplaint = encodeURIComponent(complaintMessage);
             window.open(`https://wa.me/966500850980?text=${encodedComplaint}`, '_blank');
             complaintForm.reset();
-            alert('تم إرسال شكواك بنجاح، سيتم التواصل معك عبر واتساب إذا لزم الأمر.');
+            showToast('تم إرسال الشكوى بنجاح، سنتواصل معك عبر واتساب إذا لزم الأمر.');
         });
         // Load saved user info if available
         window.addEventListener('DOMContentLoaded', () => {
@@ -807,19 +864,19 @@
                 document.getElementById('city').value = userInfo.city || '';
                 document.getElementById('saveInfo').checked = true;
             }
-            // Trigger fade-in animation on scroll
-            revealOnScroll();
         });
-        // Fade-in on scroll
-        function revealOnScroll() {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if(rect.top < window.innerHeight - 50) {
-                    el.classList.add('visible');
-                }
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                const item = this.parentElement;
+                document.querySelectorAll('.faq-item').forEach(i => { if(i!==item) i.classList.remove('open'); });
+                item.classList.toggle('open');
             });
-        }
-        window.addEventListener('scroll', revealOnScroll);
+        });
+        // Language Switcher (Demo only - Not functional)
+        document.getElementById('langBtn').addEventListener('click', function() {
+            showToast("English version coming soon...");
+        });
     </script>
 </body>
-                                </html>
+                    </html>
