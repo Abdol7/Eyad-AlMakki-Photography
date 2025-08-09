@@ -6,7 +6,7 @@
     <title>Eyad AlMakki Photography - مصور احترافي للأعراس والمناسبات</title>
     <meta name="description" content="إياد المكي، مصور محترف متخصص في تصوير الأعراس والمناسبات بخبرة وجودة عالية. احجز موعدك الآن لتوثيق أجمل لحظاتك.">
     <meta name="keywords" content="تصوير, أعراس, مناسبات, مصور, إياد المكي, تصوير حفلات, تصوير تخرج, تصوير حنه, Wedding Photographer, Saudi Arabia">
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272512.png">
+    <link rel="icon" href="https://i.ibb.co/NgWCK1hL/IMG-20250809-170340-463.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css"/>
@@ -68,8 +68,11 @@
             gap: 9px;
         }
         .logo img {
-            height: 36px;
-            width: 36px;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--light-brown);
         }
         .logo span {
             color: var(--light-brown);
@@ -119,7 +122,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.40)),
-            url('<a href="https://i.ibb.co/LzY4CbN8/IMG-3452.jpg" alt="IMG-3452" border="0" /></a>=format&fit=crop&w=1200&q=80');
+            url('https://i.ibb.co/LzY4CbN8/IMG-3452.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -531,7 +534,7 @@
     <header>
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <img src="https://cdn-icons-png.flaticon.com/512/272/272512.png" alt="Eyad AlMakki">
+                <img src="https://i.ibb.co/NgWCK1hL/IMG-20250809-170340-463.jpg" alt="Eyad AlMakki">
                 Almakki<span>Eyad</span>
             </a>
             <button class="lang-switch" id="langBtn">EN</button>
@@ -641,11 +644,10 @@
                 </div>
                 <!-- تخرج -->
                 <div class="event-type-card">
-    <img src="https://i.ibb.co/rfkT8xhQ/graduation-photo.jpg" alt="تصوير حفلات التخرج الاحترافية">
-    <h3>تصوير تخرج</h3>
-    <p>توثيق احترافي لحظات التخرج بجودة عالية، مع تركيز على التفاصيل والذكريات الأكاديمية الخالدة.</p>
+                    <img src="https://i.ibb.co/rfkT8xhQ/graduation-photo.jpg" alt="تصوير حفلات التخرج الاحترافية">
+                    <h3>تصوير تخرج</h3>
+                    <p>توثيق احترافي لحظات التخرج بجودة عالية، مع تركيز على التفاصيل والذكريات الأكاديمية الخالدة.</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -816,8 +818,13 @@
             // Format date for display
             const formattedDate = new Date(date).toLocaleDateString('ar-SA');
             // Create WhatsApp message
-            let message = `السلام عليكم... أود الاستفسار عن حجز في يوم (${formattedDate}) المناسبة (${event}) المدينة (${city})`;
-            if(details) message += `\nتفاصيل إضافية: ${details}`;
+            let message = `السلام عليكم... 
+أنا ${name}
+أود حجز موعد تصوير في يوم (${formattedDate}) 
+نوع المناسبة: (${event}) 
+المدينة: (${city}) 
+رقم الجوال: ${phone}`;
+            if(details) message += `\n\nتفاصيل إضافية: ${details}`;
             // Encode message for WhatsApp URL
             const encodedMessage = encodeURIComponent(message);
             // Open WhatsApp with pre-filled message
@@ -877,4 +884,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
