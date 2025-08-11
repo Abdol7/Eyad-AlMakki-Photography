@@ -649,6 +649,32 @@
                     <p>توثيق احترافي لحظات التخرج بجودة عالية، مع تركيز على التفاصيل والذكريات الأكاديمية الخالدة.</p>
                 </div>
             </div>
+            <section id="gallery" style="text-align:center; padding:40px; background:#f9f9f9;">
+    <h2>معرض الأعمال</h2>
+    <img id="galleryImage" src="https://d.top4top.io/p_35102vpmz5.jpg" 
+         alt="معرض الأعمال" style="max-width:90%; height:auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+</section>
+
+<script>
+    // روابط الصور
+    const images = [
+        "https://d.top4top.io/p_35102vpmz5.jpg",
+        "https://c.top4top.io/p_35101zaq34.jpg",
+        "https://a.top4top.io/p_3510o0rby2.jpg",
+        "https://b.top4top.io/p_3510vfvbx3.jpg",
+        "https://k.top4top.io/p_3510y44480.jpg",
+        "https://l.top4top.io/p_351063gw21.jpg"
+    ];
+
+    let index = 0;
+    const imgElement = document.getElementById("galleryImage");
+
+    // تغيير الصورة كل 3 ثواني
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        imgElement.src = images[index];
+    }, 3000);
+</script>
         </div>
     </section>
     <!-- FAQ Section -->
