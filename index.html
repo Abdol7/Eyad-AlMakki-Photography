@@ -915,6 +915,28 @@
             toast.style.display = 'block';
             setTimeout(()=>{ toast.style.display = 'none'; }, 3200);
         }
+        // ===== التواريخ المحجوزة =====
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_RS_j5LY6sNPedlmHVf-ga5vdRECloGIRSOUYkv_6kviLgh67vfGCiYf7FBb6djoOpw/exec';
+let bookedDates = [];
+const dateInput = document.getElementById('date');
+
+// ما يسمح بتواريخ قديمة
+dateInput.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+function checkDate() {
+    if (bookedDates.includes(dateInput.value)) {
+        dateInput.setCustomValidity('هذا التاريخ محجوز');
+        showToast('هذا التاريخ محجوز، اختر تاريخاً آخر.');
+    } else {
+        dateInput.setCustomValidity('');
+    }
+}
+dateInput.addEventListener('change', checkDate);
+
+fetch(SCRIPT_URL)
+    .then(r => r.json())
+    .then(d => { bookedDates = d.dates || []; checkDate(); })
+    .catch(() => {});
         // Booking Form Submission
         const bookingForm = document.getElementById('bookingForm');
         bookingForm.addEventListener('submit', function(e) {
@@ -955,6 +977,8 @@
                 }));
             }
             // Reset form
+            
+}
             bookingForm.reset();
             showToast('تم إرسال طلب الحجز بنجاح، سنتواصل معك عبر واتساب لتأكيد الحجز.');
         });
