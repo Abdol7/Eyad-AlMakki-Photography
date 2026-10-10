@@ -6,7 +6,21 @@
     <title>Eyad AlMakki Photography - مصور احترافي للأعراس والمناسبات</title>
     <meta name="description" content="إياد المكي، مصور محترف متخصص في تصوير الأعراس والمناسبات بخبرة وجودة عالية. احجز موعدك الآن لتوثيق أجمل لحظاتك.">
     <meta name="keywords" content="تصوير, أعراس, مناسبات, مصور, إياد المكي, تصوير حفلات, تصوير تخرج, تصوير حنه, Wedding Photographer, Saudi Arabia">
-    <link rel="icon" href="https://i.postimg.cc/T1BXkznp/5931660989436727381.jpg">
+    <!-- أيقونة الموقع: ارفع favicon.png (96x96 أو 192x192) بجانب هذا الملف -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <!-- اسم الموقع في قوقل: بدّل YOUR-DOMAIN برابط موقعك -->
+    <meta property="og:site_name" content="إياد المكي للتصوير">
+    <link rel="canonical" href="https://abdol7.github.io/Eyad-AlMakki-Photography/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "إياد المكي للتصوير",
+      "alternateName": ["Eyad AlMakki Photography", "Eyad AlMakki"],
+      "url": "https://YOUR-DOMAIN/"
+    }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css"/>
@@ -915,28 +929,32 @@
             toast.style.display = 'block';
             setTimeout(()=>{ toast.style.display = 'none'; }, 3200);
         }
-        // ===== التواريخ المحجوزة =====
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_RS_j5LY6sNPedlmHVf-ga5vdRECloGIRSOUYkv_6kviLgh67vfGCiYf7FBb6djoOpw/exec';
-let bookedDates = [];
-const dateInput = document.getElementById('date');
 
-// ما يسمح بتواريخ قديمة
-dateInput.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+        // ===== التواريخ المحجوزة (Google Sheet) =====
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_RS_j5LY6sNPedlmHVf-ga5vdRECloGIRSOUYkv_6kviLgh67vfGCiYf7FBb6djoOpw/exec';
+        let bookedDates = [];
+        const dateInput = document.getElementById('date');
 
-function checkDate() {
-    if (bookedDates.includes(dateInput.value)) {
-        dateInput.setCustomValidity('هذا التاريخ محجوز');
-        showToast('هذا التاريخ محجوز، اختر تاريخاً آخر.');
-    } else {
-        dateInput.setCustomValidity('');
-    }
-}
-dateInput.addEventListener('change', checkDate);
+        // منع اختيار تواريخ قديمة
+        dateInput.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 
-fetch(SCRIPT_URL)
-    .then(r => r.json())
-    .then(d => { bookedDates = d.dates || []; checkDate(); })
-    .catch(() => {});
+        function checkDate() {
+            if (bookedDates.includes(dateInput.value)) {
+                dateInput.setCustomValidity('هذا التاريخ محجوز');
+                showToast('هذا التاريخ محجوز، اختر تاريخاً آخر.');
+            } else {
+                dateInput.setCustomValidity('');
+            }
+        }
+        dateInput.addEventListener('change', checkDate);
+
+        if (SCRIPT_URL.startsWith('https://')) {
+            fetch(SCRIPT_URL)
+                .then(r => r.json())
+                .then(d => { bookedDates = d.dates || []; checkDate(); })
+                .catch(() => {});
+        }
+
         // Booking Form Submission
         const bookingForm = document.getElementById('bookingForm');
         bookingForm.addEventListener('submit', function(e) {
@@ -954,6 +972,11 @@ fetch(SCRIPT_URL)
                 showToast("يرجى إدخال رقم جوال صحيح.");
                 return;
             }
+            // Block already-booked dates
+            if (bookedDates.includes(date)) {
+                showToast("هذا التاريخ محجوز، اختر تاريخاً آخر.");
+                return;
+            }
             // Format date for display
             const formattedDate = new Date(date).toLocaleDateString('ar-SA');
             // Create WhatsApp message
@@ -968,6 +991,14 @@ fetch(SCRIPT_URL)
             const encodedMessage = encodeURIComponent(message);
             // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/966500850989?text=${encodedMessage}`, '_blank');
+            // Save booking request to Google Sheet
+            if (SCRIPT_URL.startsWith('https://')) {
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: new URLSearchParams({ name, phone, city, date, event, details })
+                }).catch(() => {});
+            }
             // Save user info if requested
             if (saveInfo) {
                 localStorage.setItem('userInfo', JSON.stringify({
@@ -977,8 +1008,6 @@ fetch(SCRIPT_URL)
                 }));
             }
             // Reset form
-            
-}
             bookingForm.reset();
             showToast('تم إرسال طلب الحجز بنجاح، سنتواصل معك عبر واتساب لتأكيد الحجز.');
         });
